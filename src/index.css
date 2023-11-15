@@ -21,7 +21,7 @@ nav button {
   background-color: transparent;
   border: none;
   color: #000;
-  transition: 0.4s;
+  transition: 0.1s;
   font-size: 1em;
   cursor: pointer;
   font-family: "Montserrat", sans-seri;
@@ -29,7 +29,7 @@ nav button {
 
 a:hover,
 nav button:hover {
-  color:#000000;
+  color: rgb(24, 131, 219);
 }
 
 /* form styles */

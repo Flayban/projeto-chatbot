@@ -40,9 +40,9 @@ const BaseInfo = () => {
         </label>
         <label>
           <span>Documentos</span>
-          <input type="file" accept=".xlsx" name="displayDocumentos" required placeholder="Documentos.xlsx" onChange={handleFileUpload} />
+          <input type="file" accept=".xlsx" name="displayDocumentos" placeholder="Exemplo.xlsx" onChange={handleFileUpload} />
         </label>
-        <button className="btn" type="submit">Salvar Chatbot</button>
+        <button className="btn" type="submit">Salvar</button>
       </form>
     </div>
   )
