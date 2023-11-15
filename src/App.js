@@ -1,10 +1,9 @@
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 
 //Pages
 import BaseInfo from "./Pages/BaseInfo/BaseInfo";
 import Chat from "./Pages/Chat/Chat";
-import Home from "./Pages/Home/Home";
 
 //Components
 import Navbar from './Components/Navbar';
@@ -15,9 +14,9 @@ function App() {
       <Navbar/>
         <div>
           <Routes>
-            <Route path='/' element={<Home/>}/>
+            <Route path='/' element={<Navigate to='/BasedeInformacao'/> }/>
             <Route path='/BasedeInformacao' element={<BaseInfo/>}/>
-            <Route path='/Chatbot' element={<Chat/>}/>
+            <Route path='/Chatbot' element={<Chat/>}/>            
           </Routes>
         </div>
       </BrowserRouter>
