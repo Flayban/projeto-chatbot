@@ -6,11 +6,13 @@ import BaseInfo from "./Pages/BaseInfo/BaseInfo";
 import Chat from "./Pages/Chat/Chat";
 import Home from "./Pages/Home/Home";
 
-
+//Components
+import Navbar from './Components/Navbar';
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      <Navbar/>
         <div>
           <Routes>
             <Route path='/' element={<Home/>}/>
