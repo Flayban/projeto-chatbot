@@ -28,13 +28,16 @@ const Chat = () => {
 
   return (    
     <div className={styles.chatContainer}>
-      <div className={styles.messages}>{messages.map((message, index) => (
+      <div className={styles.messages}> {messages.map((message, index) => (  
+          
           <div key={index} className={message.sent ? styles.messageSent : styles.messageReceived}>
+            <span className={styles.senderInfo}>{message.sent ? 'Você' : 'Bot'}</span>
             {message.text}
           </div>
         ))}
       </div>
       <form className={styles.inputContainer} onSubmit={handleSubmit}>
+        
         <textarea ref = {inputRef} type="body" value={inputMessage} onChange={(e) => setInputMessage(e.target.value)} onKeyPress={handleKeyPress} className={styles.inputField} placeholder="Escreva sua mensagem..."/>
         <button type="submit" className={styles.sendButton}>Enviar</button>
       </form>

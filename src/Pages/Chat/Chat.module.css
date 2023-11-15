@@ -52,7 +52,7 @@
     border-radius: 4px;   
 }
 .sendButton {   
-    background-color: #25d366; /* Cor de fundo para o botão de envio */
+    background-color: #25d366; 
     color: #ffffff;
     padding: 8px 16px;
     border: none;
@@ -61,5 +61,11 @@
 }   
 
 .sendButton:hover {
-    background-color: #128c7e; /* Cor de fundo ao passar o mouse sobre o botão de envio */
+    background-color: #128c7e; 
 }
+.senderInfo {
+    font-size: 0.8em; 
+    color: #888; 
+    margin-bottom: 4px; 
+    display: block; 
+  }
