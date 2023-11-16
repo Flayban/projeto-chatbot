@@ -1,5 +1,6 @@
 import styles from "./BaseInfo.module.css";
 import { useState, useEffect } from "react";
+import { Configuration, OpenAIApi } from "openai";
 //import * as XLSX from 'xlsx'; 
 const BaseInfo = () => {
 
@@ -8,6 +9,11 @@ const BaseInfo = () => {
   const [displayPrompt, setDisplayPrompt] = useState("")
   const [file, setFile] = useState(null);
 
+  const configuration = new Configuration({
+    organization: "" ,
+    apiKey: "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"
+  })
+  
   const handleFileUpload = (e) => {
     setFile(e.target.files[0]);
   };
@@ -20,6 +26,7 @@ const BaseInfo = () => {
       displayPrompt,
       file
     }
+
     //Ação do chatbot
   }
 
