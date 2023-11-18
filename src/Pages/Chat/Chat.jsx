@@ -1,25 +1,23 @@
-import styles from "./Chat.module.css"
+import styles from "./Chat.module.css";
 import React, { useState, useEffect, useRef } from 'react';
-import {fetchData} from "../../Hooks/ChatGPT";
-
+import axios from "axios"
 const Chat = () => {
   const [messages, setMessages] = useState([])
   const [inputMessage, setInputMessage] = useState('')
   const inputRef = useRef(null)
 
-  //AI
-  
-  
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    const resposta = fetchData(inputMessage)
+  const handleSubmit = async() => {    
     if (inputMessage) {
-      setMessages([ ...messages, {text: inputMessage, sent: true}])
-      setInputMessage('')
-      
-    }else if(resposta){
-      setMessages([ ...messages, {text: "resposta", sent: false}])  
-    }
+      const newMessages = [ ...messages, {text: inputMessage, sent: true}]
+      setMessages(newMessages)
+      setInputMessage('')   
+      try {
+        const response = await axios.post('http://localhost:3333/api/call', {prompt: inputMessage})
+        setMessages([...newMessages,{text:response.data, sent:false}])
+      } catch (error) {
+        console.log("Error:", error)
+      }  
+    }          
     
     
   }

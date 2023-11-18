@@ -1,6 +1,5 @@
 import styles from "./BaseInfo.module.css";
-import { useState, useEffect } from "react";
-//import * as XLSX from 'xlsx'; 
+import { useState } from "react";
 const BaseInfo = () => {
   const [displayName, setDisplayName] = useState("")
   const [displayVersao, setDisplayVersao] = useState("")
