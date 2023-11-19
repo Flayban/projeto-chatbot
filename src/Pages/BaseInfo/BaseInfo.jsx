@@ -1,5 +1,5 @@
 import styles from "./BaseInfo.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios"
 
 
@@ -8,7 +8,10 @@ const BaseInfo = () => {
   const [displayVersao, setDisplayVersao] = useState("")
   const [displayPrompt, setDisplayPrompt] = useState("")
   const [file, setFile] = useState(null);
-
+  const [configData, setConfigData] = useState([]);
+  //id: default 
+  
+ 
   const optionsVersion =[
     "text-davinci-003",
     "text-davinci-002",
@@ -29,26 +32,51 @@ const BaseInfo = () => {
       versao: displayVersao,
       prompt: displayPrompt
     }
-
+    console.log(chatBot)
+    //Update config bot
     try {
-      await axios.post('http://localhost:3030/config/poste', chatBot)  
+      await axios.patch('http://localhost:3030/config/patch/655a1ded6692ac068f993e1c', chatBot)  
     } catch (error) {
       console.log("error: ", error)
-    }
-    //Ação do chatbot        
+    }            
   }
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:3030/config/get/655a1ded6692ac068f993e1c"
+      );
+      // Atualizar o estado com os dados obtidos   
+      setConfigData(response.data);
+      console.log(response.data)
+
+    } catch (error) {
+      console.log("error fetching data: ", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  useEffect(() => {
+    if (configData) {
+      setDisplayName(configData.nome);
+      setDisplayVersao(configData.versao);
+      setDisplayPrompt(configData.prompt);
+    }
+  }, [configData]);
 
   return (
     <div className={styles.BaseInfo}>
       <form onSubmit={handleSubmit}>
         <label>
           <span>Nome do Chatbot</span>
-          <input type="text" name="displayName" required placeholder="Nome do Chatbot" value={displayName} onChange={(e) => setDisplayName(e.target.value)} />
+          <input type="text" name="displayName" required placeholder="Nome do Chatbot" value={displayName} onChange={(e) => setDisplayName(e.target.value)}/>
         </label>
         <label>
           <span>Versão do Chatbot</span>          
-          <select name="displayVersao" options = {optionsVersion} required onChange={(e) => setDisplayVersao(e.target.value)}>
-            <option value="" disabled selected hidden>Escolha a versão desejada</option>
+          <select value={displayVersao} name="displayVersao" options = {displayVersao} required onChange={(e) => setDisplayVersao(e.target.value)}>
             <option value={optionsVersion[0]}>{optionsVersion[0]}</option>
             <option value={optionsVersion[1]}>{optionsVersion[1]}</option>
             <option value={optionsVersion[2]}>{optionsVersion[2]}</option>
