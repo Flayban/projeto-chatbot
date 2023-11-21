@@ -106,3 +106,7 @@ textarea::placeholder {
 button[disabled] {
   background-color: #aaa;
 }
+
+.highlight{
+  color: rgb(84, 128, 221);
+}

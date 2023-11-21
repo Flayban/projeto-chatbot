@@ -3,14 +3,14 @@ import { useState, useEffect } from "react";
 import axios from "axios"
 
 
+
 const BaseInfo = () => {
   const [displayName, setDisplayName] = useState("")
   const [displayVersao, setDisplayVersao] = useState("")
   const [displayPrompt, setDisplayPrompt] = useState("")
   const [file, setFile] = useState(null);
-  //const [conteudoFile, setConteudoFile] = useState('')
+  const [conteudoFile, setConteudoFile] = useState('')
   const [configData, setConfigData] = useState([]);
-  //id: default   
  
   const optionsVersion =[
     "text-davinci-003",
@@ -22,8 +22,39 @@ const BaseInfo = () => {
   ]
 
   const handleFileUpload = async (event) => {
-    setFile(event.target.files[0])    
+    setFile(event.target.files[0])   
+    
   }
+
+  useEffect(()=>{
+    const readArquivo = async () => {
+      if (file) {
+        try {
+          const content = await readArquivoAsync(file)
+          setConteudoFile(content)
+        } catch (error) {
+          console.error('Erro ao ler o arquivo:', error)
+        }
+      }
+    }
+    readArquivo()
+  },[file])
+
+  const readArquivoAsync = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader()
+
+      reader.onload = (e) => {
+        resolve(e.target.result)
+      };
+
+      reader.onerror = (e) => {
+        reject(e);
+      };
+
+      reader.readAsText(file)
+    });
+  };
 
   const  handleSubmit = async (e)=>{
     e.preventDefault()
@@ -31,9 +62,9 @@ const BaseInfo = () => {
     const chatBot ={
       nome: displayName,
       versao: displayVersao,
-      prompt: displayPrompt
+      prompt: displayPrompt,
+      file: conteudoFile
     }
-   
     //Update config bot
     try {
       await axios.patch('http://localhost:3030/config/patch/655a1ded6692ac068f993e1c', chatBot)  
@@ -66,7 +97,8 @@ const BaseInfo = () => {
       setDisplayVersao(configData.versao);
       setDisplayPrompt(configData.prompt);
     }
-  }, [configData]);
+  }, [configData])
+
   
   return (
     <div className={styles.BaseInfo}>

@@ -25,11 +25,12 @@ const Chat = () => {
   
   const initialPrompt = useCallback( async()=>{      
     try {
-      await axios.post('http://localhost:3333/api/call', {prompt: configData.prompt})      
+      await axios.post('http://localhost:3333/api/call', {prompt: configData.prompt})
+      await axios.post('http://localhost:3333/api/call', {prompt: configData.file})     
     } catch (error) {
       console.log("Error:", error)
     }      
-  }, [configData.prompt])
+  }, [configData])
    
   useEffect(() => {
     fetchData()    
