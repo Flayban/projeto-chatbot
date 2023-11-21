@@ -8,9 +8,9 @@ const BaseInfo = () => {
   const [displayVersao, setDisplayVersao] = useState("")
   const [displayPrompt, setDisplayPrompt] = useState("")
   const [file, setFile] = useState(null);
+  //const [conteudoFile, setConteudoFile] = useState('')
   const [configData, setConfigData] = useState([]);
-  //id: default 
-  
+  //id: default   
  
   const optionsVersion =[
     "text-davinci-003",
@@ -21,18 +21,19 @@ const BaseInfo = () => {
     "text-ada-001"
   ]
 
-  const handleFileUpload = (e) => {
-    setFile(e.target.files[0]);
-  };
+  const handleFileUpload = async (event) => {
+    setFile(event.target.files[0])    
+  }
 
   const  handleSubmit = async (e)=>{
     e.preventDefault()
+
     const chatBot ={
       nome: displayName,
       versao: displayVersao,
       prompt: displayPrompt
     }
-    console.log(chatBot)
+   
     //Update config bot
     try {
       await axios.patch('http://localhost:3030/config/patch/655a1ded6692ac068f993e1c', chatBot)  
@@ -66,7 +67,7 @@ const BaseInfo = () => {
       setDisplayPrompt(configData.prompt);
     }
   }, [configData]);
-
+  
   return (
     <div className={styles.BaseInfo}>
       <form onSubmit={handleSubmit}>
@@ -91,7 +92,7 @@ const BaseInfo = () => {
         </label>
         <label>
           <span>Documentos</span>
-          <input type="file" accept=".xlsx" name="displayDocumentos" placeholder="Exemplo.xlsx" onChange={handleFileUpload} />
+          <input type="file" accept=".txt" name="displayDocumentos" placeholder="Exemplo.txt" onChange={handleFileUpload} />
         </label>
         <button className="btn" type="submit">Salvar</button>
       </form>
