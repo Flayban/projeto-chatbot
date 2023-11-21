@@ -5,7 +5,8 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import BaseInfo from "./Pages/BaseInfo/BaseInfo";
 import Chat from "./Pages/Chat/Chat";
 import Sobre from "./Pages/Sobre/Sobre";
-import Login from "./Pages/Login/Login"
+import Login from "./Pages/Login/Login";
+import Register from './Pages/Register/Register';
 //Components
 import Navbar from './Components/Navbar';
 function App() {
@@ -19,7 +20,8 @@ function App() {
             <Route path='/BasedeInformacao' element={<BaseInfo/>}/>
             <Route path='/Chatbot' element={<Chat/>}/>  
             <Route path='/Sobre' element={<Sobre/>}/> 
-            <Route path='Login' element={<Login/>}/>    
+            <Route path='/Login' element={<Login/>}/>
+            <Route path='/Register' element={<Register/>}/>    
           </Routes>
         </div>
       </BrowserRouter>

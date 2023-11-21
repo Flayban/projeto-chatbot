@@ -1,6 +1,13 @@
 import { NavLink } from "react-router-dom"
 import styles from "./Navbar.module.css"
+import { useAuthentication } from "../Hooks/useAuthentication"
+import { useAuthValue } from "../Context/AuthContext"
+
 const Navbar = () => {
+
+  const {user} = useAuthValue()
+  const {logout} = useAuthentication()
+
   return (
     <nav className={styles.navbar}>
         <ul className={styles.links_list}>
