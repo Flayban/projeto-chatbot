@@ -2,8 +2,6 @@ import styles from "./BaseInfo.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios"
 
-
-
 const BaseInfo = () => {
   const [displayName, setDisplayName] = useState("")
   const [displayVersao, setDisplayVersao] = useState("")

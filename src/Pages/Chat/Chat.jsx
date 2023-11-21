@@ -25,7 +25,14 @@ const Chat = () => {
   
   const initialPrompt = useCallback( async()=>{      
     try {
-      await axios.post('http://localhost:3333/api/call', {prompt: configData.prompt})
+      await axios.post('http://localhost:3333/api/call', {prompt: configData.prompt})  
+    } catch (error) {
+      console.log("Error:", error)
+    }      
+  }, [configData])
+
+  const initialPromptTXT = useCallback( async()=>{      
+    try {
       await axios.post('http://localhost:3333/api/call', {prompt: configData.file})     
     } catch (error) {
       console.log("Error:", error)
@@ -47,6 +54,11 @@ const Chat = () => {
       initialPrompt()
     }
   }, [configData.prompt, initialPrompt])
+  useEffect(()=>{
+    if(configData.file){
+      initialPromptTXT()
+    }
+  },[configData.file, initialPromptTXT])
 
   const handleSubmit = async() => {    
     if (inputMessage) {
