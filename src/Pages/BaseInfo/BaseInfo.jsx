@@ -11,12 +11,10 @@ const BaseInfo = () => {
   const [configData, setConfigData] = useState([]);
  
   const optionsVersion =[
-    "text-davinci-003",
-    "text-davinci-002",
-    "text-davinci-001",
-    "text-curie-001",
-    "text-babbage-001",
-    "text-ada-001"
+    "gpt-3.5-turbo",
+    "gpt-3.5-turbo-0613",
+    "gpt-3.5-turbo-16k",
+    "gpt-3.5-turbo-16k-0613"
   ]
 
   const handleFileUpload = async (event) => {
@@ -112,8 +110,6 @@ const BaseInfo = () => {
             <option value={optionsVersion[1]}>{optionsVersion[1]}</option>
             <option value={optionsVersion[2]}>{optionsVersion[2]}</option>
             <option value={optionsVersion[3]}>{optionsVersion[3]}</option>
-            <option value={optionsVersion[4]}>{optionsVersion[4]}</option>
-            <option value={optionsVersion[5]}>{optionsVersion[5]}</option>
           </select>
         </label>
         <label>

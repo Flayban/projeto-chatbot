@@ -22,22 +22,7 @@ const Chat = () => {
       console.log("error fetching data: ", error);
     }
   }
-  
-  const initialPrompt = useCallback( async()=>{      
-    try {
-      await axios.post('http://localhost:3333/api/call', {prompt: configData.prompt})  
-    } catch (error) {
-      console.log("Error:", error)
-    }      
-  }, [configData])
-
-  const initialPromptTXT = useCallback( async()=>{      
-    try {
-      await axios.post('http://localhost:3333/api/call', {prompt: configData.file})     
-    } catch (error) {
-      console.log("Error:", error)
-    }      
-  }, [configData])
+   
    
   useEffect(() => {
     fetchData()    
@@ -47,26 +32,16 @@ const Chat = () => {
     if (configData) {
       setBotNome(configData.nome)      
     }
-  }, [configData])
-
-  useEffect(() => {
-    if (configData.prompt) {
-      initialPrompt()
-    }
-  }, [configData.prompt, initialPrompt])
-  useEffect(()=>{
-    if(configData.file){
-      initialPromptTXT()
-    }
-  },[configData.file, initialPromptTXT])
+  }, [configData]) 
 
   const handleSubmit = async() => {    
     if (inputMessage) {
+      configData.prompt = inputMessage      
       const newMessages = [ ...messages, {text: inputMessage, sent: true}]
       setMessages(newMessages)
       setInputMessage('')   
       try {
-        const response = await axios.post('http://localhost:3333/api/call', {prompt: inputMessage})
+        const response = await axios.post('http://localhost:3333/api/call', configData)
         setMessages([...newMessages,{text:response.data, sent:false}])
       } catch (error) {
         console.log("Error:", error)
