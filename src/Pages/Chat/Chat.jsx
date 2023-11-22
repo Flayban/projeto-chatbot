@@ -36,7 +36,7 @@ const Chat = () => {
 
   const handleSubmit = async() => {    
     if (inputMessage) {
-      configData.prompt = inputMessage      
+      configData.user= inputMessage      
       const newMessages = [ ...messages, {text: inputMessage, sent: true}]
       setMessages(newMessages)
       setInputMessage('')   

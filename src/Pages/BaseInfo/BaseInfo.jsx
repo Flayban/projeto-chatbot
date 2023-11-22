@@ -59,7 +59,8 @@ const BaseInfo = () => {
       nome: displayName,
       versao: displayVersao,
       prompt: displayPrompt,
-      file: conteudoFile
+      file: conteudoFile,
+      user:''
     }
     //Update config bot
     try {
