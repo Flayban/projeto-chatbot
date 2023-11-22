@@ -22,6 +22,9 @@ const Navbar = () => {
             <>
               <li>
                 <NavLink to ="/BasedeInformacao" className={({ isActive }) => (isActive ? styles.active : "")}> Base de Informação </NavLink>
+              </li>
+              <li>
+                <NavLink to ="/Chatbot" className={({ isActive }) => (isActive ? styles.active : "")}> Chat Bot </NavLink>
               </li>  
             </>
           )}          
@@ -36,7 +39,10 @@ const Navbar = () => {
                 <NavLink to ="/Login" className={({ isActive }) => (isActive ? styles.active : "")}> Log in </NavLink>
               </li>
             </>
-          )}         
+          )}
+          <li>
+              <NavLink to ="/Sobre" className={({ isActive }) => (isActive ? styles.active : "")}> Sobre </NavLink>
+          </li>         
           {user &&(
             <>
               <li>
@@ -44,9 +50,7 @@ const Navbar = () => {
               </li>
             </>
           )}
-          <li>
-              <NavLink to ="/Sobre" className={({ isActive }) => (isActive ? styles.active : "")}> Sobre </NavLink>
-          </li>
+          
         </ul>
     </nav>
   )

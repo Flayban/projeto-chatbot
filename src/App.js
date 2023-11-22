@@ -38,8 +38,8 @@ function App() {
         <Navbar/>
           <div>
             <Routes>
-              <Route path='/' element={!user? <Navigate to='/Register'/> : <Navigate to='/BasedeInformacao'/> }/>
-              <Route path='/BasedeInformacao' element={ !user? <BaseInfo/> : <Navigate to='/Register'/> }/>
+              <Route path='/' element={!user?  <Navigate to='/Chatbot'/> : <BaseInfo/> }/>
+              <Route path='/BasedeInformacao' element={ !user?  <Navigate to='/Chatbot'/> : <BaseInfo/> }/>
               <Route path='/Chatbot' element={<Chat/>}/>  
               <Route path='/Sobre' element={<Sobre/>}/> 
               <Route path='/Login' element={!user? <Login/> : <Navigate to = '/Chatbot'/>}/>
