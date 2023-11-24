@@ -19,7 +19,7 @@ const About = () => {
       <div className={styles.complement}>     
         <p className={styles.title}><span class="highlight">Projeto Final da capacitação - Programa Jovens Talentos da eLife Brasil</span></p>
         <p class={styles.description}>
-          Este projeto tem como o intuito verificar o aprendizado dos discentes da segunda turma do Programa Jovens Talentos da eLife Brasil. Que deve seguir as seguintes caracteristicas:
+          Este projeto tem como o intuito verificar o aprendizado dos discentes da segunda turma do Programa Jovens Talentos da <a href="https://elife.com.br/" target="_blank" rel="noopener noreferrer"><span class="highlight" >eLife Brasil</span></a>. Que deve seguir as seguintes caracteristicas:
           <p>
             <li>Criar duas paginas em React.js: Uma para Configurar um ChatBot e outra para conversar com o Bot.</li>
             <li>Implementar um gerador de Chatbot que use a API da OpenAi para gerar as respostas do Chatbot e utilizar o MongoDB para armazenar as configurações do Chatbot.</li>
