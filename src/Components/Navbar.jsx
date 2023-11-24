@@ -4,7 +4,9 @@ import { useAuthentication } from "../Hooks/useAuthentication"
 import { useAuthValue } from "../Context/AuthContext"
 
 const Navbar = () => {
-
+  //Navbar variavel para users logados e não logados
+  //Users não logados só têm acesso ao Chat bot, Sobre, Registrer e Log in
+  //Users logados têm acesso a Base de configuração, Cha bot, Sobre e Log out
   const {user} = useAuthValue()
   const {logout} = useAuthentication()
 
