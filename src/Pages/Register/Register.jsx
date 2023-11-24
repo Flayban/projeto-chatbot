@@ -3,19 +3,17 @@ import styles from "./Register.module.css"
 import { useState, useEffect } from "react"
 
 const Register = () => {
+  //Variaveis
   const [displayName, setDisplayName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassWord] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [error, setError] = useState("")
-
   const {creatUser, error: authError, loading }  = useAuthentication()
-
+  //Envia os dados preenchidos para o FireBase caso a senha e a confirmação estegam coerentes
   const handleSubmit = async (e) =>{
     e.preventDefault()
-
     setError("")
-
     const user = {
         displayName,
         email,
@@ -29,6 +27,7 @@ const Register = () => {
     const res = await creatUser(user)
     console.log(user)
   }
+  //Verifica se exitie algum erro no registro do user
   useEffect(()=>{
     if(authError){
         setError(authError)
