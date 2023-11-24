@@ -1,3 +1,18 @@
+# Projeto Final da capacitação - Programa Jovens Talentos da eLife Brasil
+Este projeto tem como o intuito verificar o aprendizado dos discentes da segunda turma do Programa Jovens Talentos da eLife Brasil. Que deve seguir as seguintes caracteristicas:
+<p>
+    <li>Criar duas paginas em React.js: Uma para Configurar um ChatBot e outra para conversar com o Bot.</li>
+    <li>Implementar um gerador de Chatbot que use a API da OpenAi para gerar as respostas do Chatbot e utilizar o MongoDB para armazenar as configurações do Chatbot.</li>
+    <li>Desenvolver uma apresentação em forma de video, demostrando o funcionamento do projeto e comentando suas principais dificuldades. Video esse disponivel clicando aqui.</li>
+</p>
+
+## Para iniciar o projeto:
+
+### `npm install`
+
+Para Realizar a instalação de todas as dependências do react no projeto.
+Deve ser realizado este processo na pasta principal do projeto (projeto-chatbot) e nos subprojetos, são eles (backend-mongoDB\projeto-chatbot-mongoDB) e (backend-openai-chat\projeto-chatbot-openai) 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
