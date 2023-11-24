@@ -1,19 +1,27 @@
 import './App.css';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+
 //Hooks
-import { useState, useEffect } from "react"
-import { useAuthentication } from "./Hooks/useAuthentication"
-import { onAuthStateChanged } from "firebase/auth"
+import { useAuthentication } from "./Hooks/useAuthentication";
+
 //Context
-import { AuthProvider } from './Context/AuthContext'
+import { AuthProvider } from './Context/AuthContext';
+
 //Pages
 import BaseInfo from "./Pages/BaseInfo/BaseInfo";
 import Chat from "./Pages/Chat/Chat";
 import Sobre from "./Pages/Sobre/Sobre";
 import Login from "./Pages/Login/Login";
 import Register from './Pages/Register/Register';
+
 //Components
 import Navbar from './Components/Navbar';
+
+//Responsavel por fazer a inicialização do projeto
+//Comunicação dos status de log in ou log out do User
+//Responsavel por definir as permições das rotas para os Users, de forma variavel
 function App() {
 
   const [user, setUser] = useState(undefined)
