@@ -3,18 +3,15 @@ import { useState, useEffect } from "react"
 import { useAuthentication } from "../../Hooks/useAuthentication"
 
 const Login = () => {
-  
+  //Variaveis
   const [email, setEmail] = useState("")
   const [password, setPassWord] = useState("")
   const [error, setError] = useState("")
-
   const {login, error: authError, loading }  = useAuthentication()
-
+  //Envia os dados preenchidos e realiza o loading
   const handleSubmit = async (e) =>{
     e.preventDefault()
-
     setError("")
-
     const user = {
         email,
         password
@@ -23,6 +20,7 @@ const Login = () => {
     const res = await login(user)
     console.log(user)
   }
+  //Verifica se apresenta algum erro no login do user
   useEffect(()=>{
     if(authError){
         setError(authError)
