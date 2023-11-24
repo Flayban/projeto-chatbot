@@ -2,6 +2,7 @@ import styles from "./Chat.module.css";
 import React, { useState, useEffect, useRef} from 'react';
 import axios from "axios"
 const Chat = () => {
+  //variaveis
   const [messages, setMessages] = useState([])
   const [inputMessage, setInputMessage] = useState('')
   const inputRef = useRef(null)
@@ -9,6 +10,7 @@ const Chat = () => {
   const [configData, setConfigData] = useState([])
   const [botNome, setBotNome] = useState('')
 
+  //Obtem os dados de config do MongoDB
   const fetchData = async () => {
     try {
       const response = await axios.get(
@@ -22,17 +24,19 @@ const Chat = () => {
       console.log("error fetching data: ", error);
     }
   }   
-   
+  //Inicia o fetchData automaticamente ao abrir a pagina
   useEffect(() => {
     fetchData()    
   }, [])
-
+//Ao recolher os dados do BD, aloca o nome do chat nos balões de mensagens do bot
   useEffect(() => {
     if (configData) {
       setBotNome(configData.nome)      
     }
   }, [configData]) 
 
+
+  //Monta e estrutura de mensagens escadeadas e envia mensagem do user para o chat e retorna a resposta do chat
   const handleSubmit = async() => {    
     if (inputMessage) {
       setLoading(true)
@@ -50,12 +54,15 @@ const Chat = () => {
       }
     }       
   }
+
+  //Comando que configura que ao pressionar o botão enter a mensagem sera enviada 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey && loading === false) {
       e.preventDefault();
       handleSubmit(e);
     }
   }
+  //Ao iniciar a pagina a text-area estara em foco
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
