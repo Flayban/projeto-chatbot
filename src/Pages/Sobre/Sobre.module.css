@@ -6,6 +6,7 @@
     overflow-y: auto;
     margin-bottom: -50px;
     margin-top: -120px;
+    line-height: 1.5;
 }
 
 .bio{
@@ -50,7 +51,6 @@
     margin-left: 10px;
     margin-right: 10px;
     text-align: center;
-    
 }
 .title{
     font-size: 24px;

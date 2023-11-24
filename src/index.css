@@ -29,7 +29,7 @@ nav button {
 
 a:hover,
 nav button:hover {
-  color: rgb(24, 131, 219);
+  color: rgb(17, 86, 143);
 }
 
 /* form styles */
@@ -108,5 +108,5 @@ button[disabled] {
 }
 
 .highlight{
-  color: rgb(84, 128, 221);
+  color: rgb(58, 91, 163);
 }
