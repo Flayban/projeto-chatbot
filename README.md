@@ -13,7 +13,7 @@ Este projeto tem como o intuito verificar o aprendizado dos discentes da segunda
 Para Realizar a instalação de todas as dependências do react no projeto.
 Deve ser realizado este processo na pasta principal do projeto (projeto-chatbot) e nos subprojetos, são eles (backend-mongoDB\projeto-chatbot-mongoDB) e (backend-openai-chat\projeto-chatbot-openai) 
 
-# Getting Started with Create React App
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
