@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-
+//Config do FireBase
 const firebaseConfig = {
   apiKey: "AIzaSyAeNHhucmcNXBdTxRgPLZjbdheT1B_ho08",
   authDomain: "projeto-chatbot-3d810.firebaseapp.com",
@@ -12,7 +12,7 @@ const firebaseConfig = {
   measurementId: "G-8X8ZEDTVE6"
 };
 
-// Initialize Firebase
+// Inicializa Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 

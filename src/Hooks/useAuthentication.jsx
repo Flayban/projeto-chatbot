@@ -6,9 +6,9 @@ import {
     updateProfile,
     signOut,
 } from "firebase/auth";
-
 import { useState, useEffect } from "react";
 
+//Realiza a Criação do User no FireBase
 export const useAuthentication = () => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(null);
