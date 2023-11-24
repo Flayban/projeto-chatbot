@@ -1,28 +1,27 @@
 import styles from "./BaseInfo.module.css";
 import { useState, useEffect } from "react";
-import axios from "axios"
+import axios from "axios";
 
 const BaseInfo = () => {
+  //Variaveis
   const [displayName, setDisplayName] = useState("")
   const [displayVersao, setDisplayVersao] = useState("")
   const [displayPrompt, setDisplayPrompt] = useState("")
   const [file, setFile] = useState(null)
   const [loading, setLoading] = useState(false)
   const [conteudoFile, setConteudoFile] = useState('')
-  const [configData, setConfigData] = useState([]);
- 
-  const optionsVersion =[
+  const [configData, setConfigData] = useState([])
+   const optionsVersion =[
     "gpt-3.5-turbo",
     "gpt-3.5-turbo-0613",
     "gpt-3.5-turbo-16k",
     "gpt-3.5-turbo-16k-0613"
   ]
-
+  //Ao receber o arquivo TXT aloca o mesmo para a variavel file
   const handleFileUpload = async (event) => {
-    setFile(event.target.files[0])   
-    
+    setFile(event.target.files[0])       
   }
-
+  //Realisa a leitura do arquivo enviado e realiza a extração do texto
   useEffect(()=>{
     const readArquivo = async () => {
       if (file) {
@@ -36,7 +35,7 @@ const BaseInfo = () => {
     }
     readArquivo()
   },[file])
-
+//Extrai o testo do File
   const readArquivoAsync = (file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader()
@@ -53,6 +52,7 @@ const BaseInfo = () => {
     });
   };
 
+  //Realiza o envio/atualização das configurações do bot no BD
   const  handleSubmit = async (e)=>{
     e.preventDefault()
     setLoading(true)
@@ -72,7 +72,7 @@ const BaseInfo = () => {
       setLoading(false)
     }            
   }
-
+  //Operação que recebe as configs salvas no BD do chatbot para preencher os campos
   const fetchData = async () => {
     try {
       const response = await axios.get(
@@ -86,11 +86,11 @@ const BaseInfo = () => {
       console.log("error fetching data: ", error);
     }
   };
-
+  //Ativa a operação de puxar os dados no momento que a pagina é aberta
   useEffect(() => {
     fetchData()
   }, [])
-
+  //Passa os dados recuperados do BD para as variaveis 
   useEffect(() => {
     if (configData) {
       setDisplayName(configData.nome);
@@ -99,7 +99,6 @@ const BaseInfo = () => {
     }
   }, [configData])
 
-  
   return (
     <div className={styles.BaseInfo}>
       <form onSubmit={handleSubmit}>
