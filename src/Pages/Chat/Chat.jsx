@@ -46,7 +46,7 @@ const Chat = () => {
       } catch (error) {
         console.log("Error:", error)
       }finally{
-        setLoading(true)
+        setLoading(false)
       }
     }       
   }

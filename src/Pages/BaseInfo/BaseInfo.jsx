@@ -6,7 +6,8 @@ const BaseInfo = () => {
   const [displayName, setDisplayName] = useState("")
   const [displayVersao, setDisplayVersao] = useState("")
   const [displayPrompt, setDisplayPrompt] = useState("")
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState(null)
+  const [loading, setLoading] = useState(false)
   const [conteudoFile, setConteudoFile] = useState('')
   const [configData, setConfigData] = useState([]);
  
@@ -54,7 +55,7 @@ const BaseInfo = () => {
 
   const  handleSubmit = async (e)=>{
     e.preventDefault()
-
+    setLoading(true)
     const chatBot ={
       nome: displayName,
       versao: displayVersao,
@@ -65,8 +66,10 @@ const BaseInfo = () => {
     //Update config bot
     try {
       await axios.patch('http://localhost:3030/config/patch/655a1ded6692ac068f993e1c', chatBot)  
-    } catch (error) {
+    }catch (error) {
       console.log("error: ", error)
+    }finally{
+      setLoading(false)
     }            
   }
 
@@ -121,7 +124,8 @@ const BaseInfo = () => {
           <span>Documentos</span>
           <input type="file" accept=".txt" name="displayDocumentos" placeholder="Exemplo.txt" onChange={handleFileUpload} />
         </label>
-        <button className="btn" type="submit">Salvar</button>
+        {!loading && <button className="btn" type="submit">Salvar</button>}
+        {loading && <button className="btn" type="submit" disabled>Salvando</button>}
       </form>
     </div>
   )
