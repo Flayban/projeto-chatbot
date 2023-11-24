@@ -1,11 +1,11 @@
 import styles from "./Chat.module.css";
-import React, { useState, useEffect, useRef, useCallback} from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 import axios from "axios"
 const Chat = () => {
   const [messages, setMessages] = useState([])
   const [inputMessage, setInputMessage] = useState('')
   const inputRef = useRef(null)
-  
+  const [loading, setLoading] = useState(false)
   const [configData, setConfigData] = useState([])
   const [botNome, setBotNome] = useState('')
 
@@ -21,8 +21,7 @@ const Chat = () => {
     } catch (error) {
       console.log("error fetching data: ", error);
     }
-  }
-   
+  }   
    
   useEffect(() => {
     fetchData()    
@@ -36,6 +35,7 @@ const Chat = () => {
 
   const handleSubmit = async() => {    
     if (inputMessage) {
+      setLoading(true)
       configData.user= inputMessage      
       const newMessages = [ ...messages, {text: inputMessage, sent: true}]
       setMessages(newMessages)
@@ -45,11 +45,13 @@ const Chat = () => {
         setMessages([...newMessages,{text:response.data, sent:false}])
       } catch (error) {
         console.log("Error:", error)
-      }  
+      }finally{
+        setLoading(true)
+      }
     }       
   }
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === 'Enter' && !e.shiftKey && loading === false) {
       e.preventDefault();
       handleSubmit(e);
     }
@@ -73,7 +75,9 @@ const Chat = () => {
       <form className={styles.inputContainer} onSubmit={handleSubmit}>
         
         <textarea ref = {inputRef} type="body" value={inputMessage} onChange={(e) => setInputMessage(e.target.value)} onKeyPress={handleKeyPress} className={styles.inputField} placeholder="Escreva sua mensagem..."/>
-        <button type="submit" className={styles.sendButton}>Enviar</button>
+        {!loading && <button type="submit" className={styles.sendButton}>Enviar</button> }
+        {loading && <button type="submit" className={styles.sendButton} disabled>Aguarde</button> }
+        
       </form>
     </div>  
   )
