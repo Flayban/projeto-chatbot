@@ -2,7 +2,7 @@ const router = require('express').Router()
 const Infochat = require('../models/Infochat')
 
 //Criar nova configuração
-router.post('/poste', async(req, res) => {
+router.post('/post', async(req, res) => {
     const{nome, versao, prompt, file} = req.body
 
     if(!nome){
