@@ -20,7 +20,7 @@ const openia = new OpenAI({
 
 const informations = []
 async function getInformations(){
-  return 'Eu sou BeLife, chatBot da eLife Brasil'
+  return ''
 }
 
 //Recebe a mensagem do user juntamente com as configurações do bot e retorna a resposta do bot
@@ -35,7 +35,7 @@ app.post('/api/call', async (req, res) =>{
         {role: 'assistant', content: `Meu nome é ${nome}`},  
         {role: 'assistant', content: prompt},
         {role: 'assistant', content: file},    
-        { role: 'user', content: user }],
+        {role: 'user', content: user }],
       functions: [
         {
           function: getInformations,
